@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>레스토랑 회원가입 사이트</title>
+		<style>
+			header {
+                text-align : center;
+                font-size : 40px;
+                text-shadow: 3px 3px skyblue;
+            }
+            header::first-letter {
+                color : #FA8072;
+            }
+        	body {
+                background-color : #F9F3E9;
+                width : 800px;
+                margin-left : auto;
+                margin-right : auto;
+            }
+            hr {
+                border : 1px solid #FA8072;
+            }
+			span {
+				color : red;
+			}
+			label.wrong{
+				color: red;
+			}
+			label.right{
+				color : skyblue;
+			}
+			button, input.button{
+				width : 100px;
+				height : 30px;
+				font-size : 13px;
+				font-weight : bold;
+				background-color : #FFD700;
+				cursor : pointer;
+			}
+			label {
+				font-size : 17px;
+				font-weight : bold;
+			}
+		</style>
+		<script>
+			var xmlhttp = false;
+			if(window.XMLHttpRequest){
+				xmlhttp = new XMLHttpRequest();
+			}
+			function get(){
+				//아이디를 확인하기 위해 JSP를 불러오는 부분
+				if(xmlhttp.readyState == 4 & xmlhttp.status == 200){
+					var tempIndex1 = xmlhttp.responseText.indexOf("flag=");
+                    var tempIndex2 = xmlhttp.responseText.indexOf("EOP");
+
+					var id = document.getElementById("id");
+					var idLabel = document.getElementById("idLabel");
+					var isUsed = xmlhttp.responseText.substring(tempIndex1+5, tempIndex2);
+					if(isUsed == "true" ){
+						alert("아이디가 이미 사용중입니다.");
+						idLabel.setAttribute("class", "wrong");
+						id.focus();
+					}
+					else if(id.value == "" | id.value == " "){
+						alert("사용불가능한 아이디입니다.");
+						idLabel.setAttribute("class", "wrong");
+						id.focus();
+					}
+					else{
+						alert("사용 가능한 아이디입니다.");
+						idLabel.setAttribute("class", "right");
+					}
+				}
+			}
+			function checkStep1(){
+				//아이디가 중복이 아닌지 확인하는 함수
+				var id = document.getElementById("id");
+				if(id.value != ""){
+					var url = "idDoubleCheck.jsp?id=" + id.value;
+					xmlhttp.open("GET", url, true);
+					xmlhttp.onreadystatechange = get;
+					xmlhttp.send(null);
+				}
+				else{
+					alert("아이디를 입력해주세요");
+					id.focus();
+				}
+			}
+			function checkStep2(){
+				//입력한 비밀번호 2개가 일치하는지 확인하는 부분
+				var pass1 = document.getElementById("pass1");
+				var passLabel1 = document.getElementById("passLabel1");
+
+				var pass2 = document.getElementById("pass2");
+				var passLabel2 = document.getElementById("passLabel2");
+
+				if((pass1.value == pass2.value) & pass1.value != ""){
+					alert("비밀번호가 올바릅니다.");
+					passLabel1.setAttribute("class", "right");
+					passLabel2.setAttribute("class", "right");
+				}
+				else{
+					alert("비밀번호가 올바르지 않습니다.");
+					passLabel1.setAttribute("class", "wrong");
+					passLabel2.setAttribute("class", "wrong");
+					pass1.focus();
+				}
+			}
+			function checkStep3(){
+				//이름 입력 칸 확인과 전체적인 입력 확인
+				var nameLabel = document.getElementById("nameLabel");
+				var name = document.getElementById("name");
+
+				var phoneLabel = document.getElementById("phoneLabel");
+				var phone = document.getElementById("phone");
+
+				var addrLabel = document.getElementById("addrLabel");
+				var addr = document.getElementById("address");
+
+				var menuLabel = document.getElementById("menuLabel");
+				var menu = document.getElementById("showMenu");
+
+				var idLabel = document.getElementById("idLabel");
+				var passLabel = document.getElementById("passLabel1");
+				var nameLabel = document.getElementById("nameLabel");
+
+				//사업장명이 빈칸인지 확인
+				if(name.value == "" | name.value == " "){
+					alert("사업장명을 입력해주세요");
+					nameLabel.setAttribute("class", "wrong");
+					name.focus();
+					return false;
+				}else{
+					nameLabel.setAttribute("class", "right");
+				}
+
+				//전화번호가 숫자인지 확인
+				if(phone.value == "" | phone.value == " " | isNaN(phone.value) == true){
+					alert("전화번호를 정확히 입력해주세요\n'-'기호는 빼고 입력해주세요");
+					phoneLabel.setAttribute("class", "wrong");
+					phone.focus();
+					return false;
+				}else{
+					phoneLabel.setAttribute("class", "right");
+				}
+
+				//주소가 빈칸인지 확인
+				if(addr.value == "" | addr.value == " "){
+					alert("주소를 입력해주세요");
+					addrLabel.setAttribute("class", "wrong");
+					addr.focus();
+					return false;
+				}else{
+					addrLabel.setAttribute("class", "right");
+				}
+
+				//메뉴가 빈칸인지 확인
+				if(menu.value == "" | menu.value == " " ){
+					alert("메뉴를 입력해주세요");
+					menuLabel.setAttribute("class", "wrong");
+					menu.focus();
+					return false;
+				}
+				else{
+					menuLabel.setAttribute("class", "right");
+				}
+				
+				//아이디 입력 확인
+				if(idLabel.className == "wrong" | idLabel.className == ""){
+					alert("아이디를 확인해주세요");
+					return false;
+				} else if (passLabel.className == "wrong" | passLabel.className == ""){
+					//비밀번호 입력 확인
+					alert("비밀번호를 확인해주세요");
+					return false;
+				} else if(nameLabel.className == "wrong" | nameLabel.className == ""){
+					//이름 입력 확인
+					alert("사업장명을 확인해주세요");
+					return false;
+				} else if(phoneLabel.className == "wrong" | phoneLabel.className == ""){
+					//전화번호 입력 확인
+					alert("전화번호를 확인해주세요");
+					return false;
+				} else if(addrLabel.className == "wrong" | addrLabel.className == ""){
+					//주소 입력 확인
+					alert("주소를 확인해주세요");
+					return false;
+				} else if(menuLabel.className == "wrong" | menuLabel.className == "" ){
+					//대표 메뉴 입력 확인
+					alert("대표메뉴를 확인해주세요");
+					return false;
+				} else {
+					return true;
+				}
+			}
+			function home(){
+				window.open("prototype.jsp", "_self");
+			}
+		</script>
+	</head>
+	<body>
+		<h2>레스토랑(업체) 회원가입 사이트</h2>
+		<hr>
+		<h3>레스토랑(업체)용 회원가입 사이트입니다.</h3>
+		<hr>
+		<form method="get" action="restSignUp.jsp">
+			<label for="id" id="idLabel">아이디</label><span>*</span>
+			<input type="text" name="id" id="id" maxlength="45">
+			<button type="button" onclick="checkStep1()">중복체크</button><br>
+
+			<label for="pass" id="passLabel1">비밀번호</label><span>*</span>
+			<input type="password" name="pass" id="pass1" maxlength="45"><br>
+			
+
+			<label for="pass2" id="passLabel2">비밀번호 재확인</label><span>*</span>
+			<input type="password" name="passCheck" id="pass2" maxlength="45">
+			<button type="button" onclick="checkStep2()">비밀번호 체크</button><br>
+
+			<label for="name" id="nameLabel">사업장명</label><span>*</span>
+			<input type="text" name="name" id="name" maxlength="45"><br>
+
+			<label for="phone" id="phoneLabel">전화번호</label><span>*</span>
+			<input type="text" name="phone" id="phone" maxlength="45"><br>
+
+			<label for="address" id="addrLabel">주소</label><span>*</span>
+			<input type="text" name="address" id="address" maxlength="45"><br>
+
+			<label for="showMenu" id="menuLabel">메뉴</label><span>*</span>
+			<textarea cols="30" rows="3" maxlength="200" name="showmenu" id="showMenu"></textarea><br>
+
+			<input type="submit" value="회원가입" class="button" onclick="return checkStep3()">
+			<input type="reset" value="초기화" class="button">
+			<button type="button" onclick="home()">홈으로</button>
+		</form>
+	</body>
+</html>
