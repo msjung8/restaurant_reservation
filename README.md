@@ -1,6 +1,6 @@
 STACKS
 
-![image](https://github.com/user-attachments/assets/d8e3e0ba-d998-4ccc-8e59-9d07b232b9ea)
+![image](https://github.com/user-attachments/assets/77cbbce7-5786-46c9-9f48-8caf8e9d7666)
 
 
 
@@ -8,4 +8,4 @@ STACKS
 
 page compositions : login - searching restaurant - reservation - checking reservation - review
 
-![image](https://github.com/user-attachments/assets/f6f1780d-875b-46b0-9f16-c3f248e02e97)
+![image](https://github.com/user-attachments/assets/61c9e111-21f1-4291-8fe3-5c02e11b6514)
