@@ -1,5 +1,6 @@
 # 프로젝트 이름
 레스토랑스 : 레스토랑 예약 사이트
+
 ![image](https://github.com/user-attachments/assets/61c9e111-21f1-4291-8fe3-5c02e11b6514)
 
 ## 프로젝트 설명
