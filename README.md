@@ -1,5 +1,7 @@
 # 프로젝트 이름
 레스토랑스 : 레스토랑 예약 사이트
+![image](https://github.com/user-attachments/assets/61c9e111-21f1-4291-8fe3-5c02e11b6514)
+
 ## 기능
 
 - **로그인 / 로그아웃 / 회원가입 / 개인정보 수정 페이지**  
@@ -26,4 +28,4 @@
 
 
 
-![image](https://github.com/user-attachments/assets/61c9e111-21f1-4291-8fe3-5c02e11b6514)
+
