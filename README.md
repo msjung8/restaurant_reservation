@@ -2,6 +2,10 @@
 레스토랑스 : 레스토랑 예약 사이트
 ![image](https://github.com/user-attachments/assets/61c9e111-21f1-4291-8fe3-5c02e11b6514)
 
+## 프로젝트 설명
+
+이 프로젝트는 **JSP (Java Server Pages)**와 **JDBC (Java Database Connectivity)**를 사용하여 만든 웹 기반 레스토랑 예약 시스템입니다. 유저는 레스토랑 정보를 조회하고 예약을 추가하거나 삭제할 수 있으며, 개인정보 수정 및 즐겨찾기 관리 기능도 제공합니다.
+
 ## 기능
 
 - **로그인 / 로그아웃 / 회원가입 / 개인정보 수정 페이지**  
